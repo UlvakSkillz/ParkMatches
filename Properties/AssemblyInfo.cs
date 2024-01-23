@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using MelonLoader;
 using ParkMatches; // The namespace of your mod class
 // ...
-[assembly: MelonInfo(typeof(ParkMatchesClass), "Park Matches", "1.0.0", "UlvakSkillz")]
+[assembly: MelonInfo(typeof(ParkMatchesClass), "Park Matches", "1.0.1", "UlvakSkillz")]
 [assembly: MelonGame("Buckethead Entertainment", "RUMBLE")]
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
