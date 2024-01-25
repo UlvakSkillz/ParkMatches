@@ -75,7 +75,7 @@ namespace ParkMatches
     public class ParkMatchesClass : MelonMod
     {
         //variables
-        public static ParkMatches.ParkMatchesClass instance;
+        public static ParkMatchesClass instance;
         private InteractionButton parkResetSceneButton;
         public PlayerManager playerManager;
         private PlayerResetSystem localResetSystem;
