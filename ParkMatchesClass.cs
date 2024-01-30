@@ -23,6 +23,10 @@ public static class Patch
 
     private static void RPCCleanScenePostfix(ParkInstance __instance)
     {
+        if (!ParkMatches.ParkMatchesClass.instance.isActive)
+        {
+            return;
+        }
         if (ParkMatches.ParkMatchesClass.instance.matchBufferTimer <= DateTime.Now) {
         Il2CppSystem.Collections.Generic.List<Player> playerList = ParkMatches.ParkMatchesClass.instance.playerManager.AllPlayers;
             if ((playerList.Count >= 2) && (!ParkMatches.ParkMatchesClass.instance.fightStarted))
@@ -75,6 +79,8 @@ namespace ParkMatches
     public class ParkMatchesClass : MelonMod
     {
         //variables
+        private string settingsFile = @"UserData/ParkMatches/Settings.txt";
+        public bool isActive;
         public static ParkMatchesClass instance;
         private InteractionButton parkResetSceneButton;
         public PlayerManager playerManager;
@@ -407,6 +413,10 @@ namespace ParkMatches
                     }
                     else
                     {
+                        if (currentScene == "Gym")
+                        {
+                            readSettingsFile();
+                        }
                         //stop the fight for all other scenes
                         fightStarted = false;
                     }
@@ -461,6 +471,40 @@ namespace ParkMatches
             catch (Exception e)
             {
                 MelonLogger.Error($"Error Starting Fight: {e.Message}");
+            }
+        }
+
+        //reads the file to see if it needs to hide self/other healths
+        private void readSettingsFile()
+        {
+            if (System.IO.File.Exists(settingsFile))
+            {
+                try
+                {
+                    //reads file lines
+                    string[] fileContents = System.IO.File.ReadAllLines(settingsFile);
+                    //checks for hide self
+                    if (fileContents[1].ToLower() == "true")
+                    {
+                        MelonLogger.Msg("Setting to Active");
+                        isActive = true;
+                    }
+                    else
+                    {
+                        MelonLogger.Msg("Setting to Inactive");
+                        isActive = false;
+                    }
+                }
+                catch
+                {
+                    MelonLogger.Error($"Error reading {settingsFile} ! Setting Inactive");
+                    isActive = false;
+                }
+            }
+            else
+            {
+                MelonLogger.Error($"{settingsFile} does not Exist! Setting Inactive");
+                isActive = false;
             }
         }
 
