@@ -23,12 +23,10 @@ public static class Patch
 
     private static void RPCCleanScenePostfix(ParkInstance __instance)
     {
-        if (!ParkMatches.ParkMatchesClass.instance.isActive)
+        if (!ParkMatches.ParkMatchesClass.instance.isActive) { return; }
+        if (ParkMatches.ParkMatchesClass.instance.matchBufferTimer <= DateTime.Now)
         {
-            return;
-        }
-        if (ParkMatches.ParkMatchesClass.instance.matchBufferTimer <= DateTime.Now) {
-        Il2CppSystem.Collections.Generic.List<Player> playerList = ParkMatches.ParkMatchesClass.instance.playerManager.AllPlayers;
+            Il2CppSystem.Collections.Generic.List<Player> playerList = ParkMatches.ParkMatchesClass.instance.playerManager.AllPlayers;
             if ((playerList.Count >= 2) && (!ParkMatches.ParkMatchesClass.instance.fightStarted))
             {
                 int lowestActor = 256;
@@ -65,10 +63,7 @@ public static class Patch
                     //start match
                     ParkMatches.ParkMatchesClass.instance.StartFight();
                 }
-                else
-                {
-                    MelonLogger.Msg("Player Excluded");
-                }
+                else { MelonLogger.Msg("Player Excluded"); }
             }
         }
     }
@@ -401,6 +396,7 @@ namespace ParkMatches
                     //if in park
                     if (currentScene == "Park")
                     {
+                        readSettingsFile();
                         //initialize scene variables
                         playerManager = GameObject.Find("Game Instance/Initializable/PlayerManager").GetComponent<PlayerManager>();
                         parkResetSceneButton = GameObject.Find("________________LOGIC__________________ /Heinhouwser products/Parkboard (Park)/Primary Display/Park/Minigame Start button/InteractionButton/Button").GetComponent<InteractionButton>();
@@ -413,20 +409,13 @@ namespace ParkMatches
                     }
                     else
                     {
-                        if (currentScene == "Gym")
-                        {
-                            readSettingsFile();
-                        }
                         //stop the fight for all other scenes
                         fightStarted = false;
                     }
                     //only runs when initialized successfully
                     sceneChanged = false;
                 }
-                catch
-                {
-                    return;
-                }
+                catch {  return; }
             }
         }
 
