@@ -1,16 +1,19 @@
 ﻿using HarmonyLib;
 using MelonLoader;
-using Photon.Pun;
-using RUMBLE.Environment;
-using RUMBLE.Environment.Park;
-using RUMBLE.Interactions.InteractionBase;
-using RUMBLE.Managers;
-using RUMBLE.Players;
-using RUMBLE.Players.Subsystems;
+using Il2CppPhoton.Pun;
+using Il2CppRUMBLE.Environment;
+using Il2CppRUMBLE.Environment.Park;
+using Il2CppRUMBLE.Interactions.InteractionBase;
+using Il2CppRUMBLE.Managers;
+using Il2CppRUMBLE.Players;
+using Il2CppRUMBLE.Players.Subsystems;
 using System;
 using System.Media;
 using System.Threading;
 using UnityEngine;
+using System.Collections;
+using NAudio.Wave;
+using MelonLoader.Utils;
 
 public static class Patch
 {
@@ -115,17 +118,17 @@ namespace ParkMatches
             matchBufferTimer = DateTime.Now;
             Patch.Start();
             //set File Paths
-            FilePaths[0] = @"UserData\ParkMatches\DingDing.wav";
-            FilePaths[1] = @"UserData\ParkMatches\YouWin.wav";
-            FilePaths[2] = @"UserData\ParkMatches\YouLose.wav";
-            FilePaths[3] = @"UserData\ParkMatches\ExitArena.wav";
-            FilePaths[4] = @"UserData\ParkMatches\EnterArena.wav";
-            FilePaths[5] = @"UserData\ParkMatches\NewRoundStart.wav";
+            FilePaths[0] = @"\ParkMatches\DingDing.mp3";
+            FilePaths[1] = @"\ParkMatches\YouWin.mp3";
+            FilePaths[2] = @"\ParkMatches\YouLose.mp3";
+            FilePaths[3] = @"\ParkMatches\ExitArena.mp3";
+            FilePaths[4] = @"\ParkMatches\EnterArena.mp3";
+            FilePaths[5] = @"\ParkMatches\NewRoundStart.mp3";
             bool filesFound = true;
             //check if each file exists
             for (int i = 0; i < FilePaths.Length; i++)
             {
-                if (!System.IO.File.Exists(FilePaths[i]))
+                if (!System.IO.File.Exists(MelonEnvironment.UserDataDirectory + FilePaths[i]))
                 {
                     filesFound = false;
                     MelonLogger.Msg($"{FilePaths[i]} Doesn't Exist!");
@@ -396,15 +399,15 @@ namespace ParkMatches
                     //if in park
                     if (currentScene == "Park")
                     {
-                        readSettingsFile();
                         //initialize scene variables
-                        playerManager = GameObject.Find("Game Instance/Initializable/PlayerManager").GetComponent<PlayerManager>();
+                        playerManager = PlayerManager.instance;
                         parkResetSceneButton = GameObject.Find("________________LOGIC__________________ /Heinhouwser products/Parkboard (Park)/Primary Display/Park/Minigame Start button/InteractionButton/Button").GetComponent<InteractionButton>();
                         parkMatchCounter = GameObject.Find("________________LOGIC__________________ /Park Toys/MatchCounter").GetComponent<ParkMatchCounter>();
                         localPlayerHealth = GameObject.Find("Health/Local").transform.parent.GetComponent<PlayerHealth>();
                         localPlayer = playerManager.localPlayer;
                         localResetSystem = playerManager.localPlayer.Controller.gameObject.GetComponent<PlayerResetSystem>();
                         isHost = PhotonNetwork.IsMasterClient;
+                        readSettingsFile();
                         MelonLogger.Msg("Reset Park Button Found");
                     }
                     else
@@ -497,11 +500,26 @@ namespace ParkMatches
             }
         }
 
+        private IEnumerator PlaySound(string FilePath, int threadToPlayOn)
+        {
+            threadActive[threadToPlayOn] = true;
+            var reader = new Mp3FileReader(FilePath);
+            var waveOut = new WaveOutEvent();
+            waveOut.Init(reader);
+            waveOut.Play();
+            while (waveOut.PlaybackState == PlaybackState.Playing)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            threadActive[threadToPlayOn] = false;
+            yield break;
+        }
+
         //Plays the File Sound if it Exists
         private void PlaySoundIfFileExists(string soundFilePath, int threadToPlayOn)
         {
             //Check if the sound file exists
-            if (System.IO.File.Exists(soundFilePath))
+            if (System.IO.File.Exists(MelonEnvironment.UserDataDirectory + soundFilePath))
             {
                 //Ensure that only one sound is playing at a time
                 if (threadActive[threadToPlayOn])
@@ -510,25 +528,7 @@ namespace ParkMatches
                 }
                 try
                 {
-                    //Create a SoundPlayer instance with the specified sound file path
-                    using (SoundPlayer player = new SoundPlayer(soundFilePath))
-                    {
-                        //Set flag to indicate that a sound is currently playing
-                        threadActive[threadToPlayOn] = true;
-                        //Create a new thread if no thread is active
-                        if (threads[threadToPlayOn] == null || !threads[threadToPlayOn].IsAlive)
-                        {
-                            threads[threadToPlayOn] = new Thread(() =>
-                            {
-                                //Use PlaySync for synchronous playback
-                                player.PlaySync();
-                                //Reset flag to indicate that the sound has finished playing
-                                threadActive[threadToPlayOn] = false;
-                            });
-                            //Start the thread
-                            threads[threadToPlayOn].Start();
-                        }
-                    }
+                    MelonCoroutines.Start(PlaySound(MelonEnvironment.UserDataDirectory + soundFilePath, threadToPlayOn));
                 }
                 catch (Exception ex)
                 {
@@ -537,7 +537,7 @@ namespace ParkMatches
             }
             else
             {
-                MelonLogger.Msg("Sound File Doesn't Exist: " + soundFilePath);
+                MelonLogger.Msg("Sound File Doesn't Exist: " + MelonEnvironment.UserDataDirectory + soundFilePath);
             }
         }
     }
