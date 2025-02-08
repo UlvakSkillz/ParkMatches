@@ -505,6 +505,7 @@ namespace ParkMatches
             threadActive[threadToPlayOn] = true;
             var reader = new Mp3FileReader(FilePath);
             var waveOut = new WaveOutEvent();
+            waveOut.DeviceNumber = 0;
             waveOut.Init(reader);
             waveOut.Play();
             while (waveOut.PlaybackState == PlaybackState.Playing)

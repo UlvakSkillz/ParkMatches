@@ -203,6 +203,11 @@
             Specified Version Patch.
             </summary>
         </member>
+        <member name="P:MelonLoader.VerifyLoaderVersionAttribute.Prerelease">
+            <summary>
+            Specified Version Prerelease.
+            </summary>
+        </member>
         <member name="P:MelonLoader.VerifyLoaderVersionAttribute.IsMinimum">
             <summary>
             If Version Specified is a Minimum.
@@ -371,6 +376,19 @@
         <member name="F:MelonLoader.MelonEvents.OnPreModsLoaded">
             <summary>
             Called before MelonMods are loaded from the Mods folder.
+            </summary>
+        </member>
+        <member name="P:MelonLoader.MelonLaunchOptions.ExternalArguments">
+            <summary>
+            Dictionary of all Arguments with value (if found) that were not used by MelonLoader
+            <para>
+            <b>Key</b> is the argument, <b>Value</b> is the value for the argument, <c>null</c> if not found
+            </para>
+            </summary>
+        </member>
+        <member name="P:MelonLoader.MelonLaunchOptions.CommandLineArgs">
+            <summary>
+            Array of All Command Line Arguments
             </summary>
         </member>
         <member name="F:MelonLoader.MelonAssembly.OnAssemblyResolving">
@@ -11774,11 +11792,6 @@
             <summary>
             Provide field and property aliases when an object is decoded.
             If a field or property is not found while decoding, this list will be searched for a matching alias.
-            </summary>
-        </member>
-        <member name="F:MelonLoader.Utils.ManagedAnalyticsBlocker._explicitAllowList">
-            <summary>
-            Explicitly allow domains that may be a subdomain of a blocked domain.
             </summary>
         </member>
         <member name="T:MelonLoader.EnumExtensions">

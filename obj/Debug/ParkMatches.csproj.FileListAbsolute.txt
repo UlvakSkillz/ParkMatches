@@ -27,8 +27,6 @@ C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.Androi
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.TextRenderingModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.UIModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Unity.RenderPipelines.Universal.Runtime.dll
-C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.TerrainModule.dll
-C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.ClothModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.UnityWebRequestModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.DirectorModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.AIModule.dll
@@ -40,16 +38,13 @@ C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.VFXMod
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.XRModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.ParticleSystemModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Unity.InputSystem.dll
-C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.SpatialTracking.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Iced.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.InputModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.JSONSerializeModule.dll
-C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.SharedInternalsModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.SubsystemsModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.UIElementsModule.dll
-C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.UIElementsNativeModule.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\WebSocketDotNet.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Il2CppMono.Security.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Il2CppSystem.Configuration.dll
@@ -59,7 +54,6 @@ C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Unity.Mathematics.
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Unity.XR.Management.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\MelonLoader.xml
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\obj\Debug\ParkMatches.csproj.CoreCompileInputs.cache
-C:\Users\austi\source\repos\ParkMatches\ParkMatches\obj\Debug\ParkMatches.csproj.CopyComplete
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\obj\Debug\ParkMatches.dll
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\obj\Debug\ParkMatches.pdb
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\obj\Debug\ParkMatches.csproj.AssemblyReference.cache
@@ -111,3 +105,11 @@ C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\NAudio.WinForms.xm
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\NAudio.WinMM.xml
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\System.Security.AccessControl.xml
 C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Il2CppLIV.dll
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Il2CppInterop.Generator.dll
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\Il2CppInterop.HarmonySupport.dll
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\UnityEngine.AssetBundleModule.dll
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\MonoMod.Backports.dll
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\bin\Debug\MonoMod.ILHelpers.dll
+C:\Users\austi\source\repos\ParkMatches\ParkMatches\obj\Debug\ParkMatc.AE278575.Up2Date
